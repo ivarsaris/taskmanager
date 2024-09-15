@@ -1,0 +1,58 @@
+<div class="d-flex flex-column min-vh-100">
+  <!-- Header -->
+  <header class="bg-dark text-white py-3 mb-4">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="https://media.istockphoto.com/id/1303877287/vector/paper-checklist-and-pencil-flat-pictogram.jpg?s=612x612&w=0&k=20&c=NoqPzn94VH2Pm7epxF8P5rCcScMEAiGQ8Hv_b2ZwRjY=" alt="Task Manager Logo" width="60" height="60" class="me-2">
+          <span>Task Manager</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tasks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Users</a>
+            </li>
+          </ul>
+
+          <button class="btn btn-light ms-auto">Create Task</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container flex-grow-1">
+    <div class="row">
+      <!-- Tasks Section -->
+      <div class="col-lg-8 mb-4">
+        <section>
+          <h2 class="mb-3">Tasks</h2>
+          <app-tasks></app-tasks>
+        </section>
+      </div>
+
+      <!-- Users Section -->
+      <div class="col-lg-4">
+        <section>
+          <h2 class="mb-3">Users</h2>
+          <app-users></app-users>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-3 mt-auto">
+    <div class="container text-center">
+      <span>&copy; 2024 Task Manager. All rights reserved.</span>
+    </div>
+  </footer>
+</div>
