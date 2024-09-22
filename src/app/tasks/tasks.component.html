@@ -1,4 +1,16 @@
 <div class="row">
+    <div class="col-12 d-flex justify-content-end">
+        <div class="d-flex flex-column gap-2">
+            <label for="userSelect">Filter tasks by assigned user</label>
+            <select name="" id="userSelect" class="form-select" [(ngModel)]="selectedUserId"
+                (change)="filterTasksByUser($event)">
+                <option [value]="-1">All users</option>
+                <option *ngFor="let user of users_list" [value]="user.id">{{ user.name }}</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-12">
         <div *ngFor="let status of task_statuses">
             <div class="row">
