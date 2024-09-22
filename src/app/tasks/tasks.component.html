@@ -14,16 +14,16 @@
                     class="bi bi-pencil-square"></i></a> -->
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-space-between align-center">
-                                <span><strong>Status</strong></span><span>{{ task.status }}</span>
+                            <li class="list-group-item d-flex justify-content-between align-center">
+                                <span><strong>Assignee</strong></span><span>{{ getUserById(task.assignee_id) }}</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-space-between align-center">
+                            <li class="list-group-item d-flex justify-content-between align-center">
                                 <span><strong>Task created</strong></span><span>{{ task.date_created }}</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-space-between align-center">
+                            <li class="list-group-item d-flex justify-content-between align-center">
                                 <span><strong>Task deadline</strong></span><span>{{ task.date_deadline }}</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-space-between align-center">
+                            <li class="list-group-item d-flex justify-content-between align-center">
                                 <span><strong>Priority</strong></span><span>{{ task.priority }}</span>
                             </li>
                         </ul>
