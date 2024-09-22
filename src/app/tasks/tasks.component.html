@@ -1,28 +1,35 @@
 <div class="row">
-    <ng-container *ngFor="let task of tasks_list">
-        <div class="col-xs-12 col-md-6 col-lg-3 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ task.title }}</h5>
-                    <p class="card-text">{{ task.description }}</p>
-                    <!-- <a href="#" (click)="openEditTask(task.id)" data-bs-toggle="modal" data-bs-target="#openTaskModal"><i
-                    class="bi bi-pencil-square"></i></a> -->
+    <div class="col-12">
+        <div *ngFor="let status of task_statuses">
+            <div class="row">
+                <div class="col-12">
+                    <h2>{{ status }}</h2>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-space-between align-center">
-                        <span><strong>Status</strong></span><span>{{ task.status }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-space-between align-center">
-                        <span><strong>Task created</strong></span><span>{{ task.date_created }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-space-between align-center">
-                        <span><strong>Task deadline</strong></span><span>{{ task.date_deadline }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-space-between align-center">
-                        <span><strong>Priority</strong></span><span>{{ task.priority }}</span>
-                    </li>
-                </ul>
+                <div *ngFor="let task of getTasksByStatus(status)" class="col-xs-12 col-md-6 col-lg-3 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ task.title }}</h5>
+                            <p class="card-text">{{ task.description }}</p>
+                            <!-- <a href="#" (click)="openEditTask(task.id)" data-bs-toggle="modal" data-bs-target="#openTaskModal"><i
+                    class="bi bi-pencil-square"></i></a> -->
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-space-between align-center">
+                                <span><strong>Status</strong></span><span>{{ task.status }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-space-between align-center">
+                                <span><strong>Task created</strong></span><span>{{ task.date_created }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-space-between align-center">
+                                <span><strong>Task deadline</strong></span><span>{{ task.date_deadline }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-space-between align-center">
+                                <span><strong>Priority</strong></span><span>{{ task.priority }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </ng-container>
+    </div>
 </div>
