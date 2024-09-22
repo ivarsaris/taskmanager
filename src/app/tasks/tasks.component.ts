@@ -38,7 +38,7 @@ export class TasksComponent {
     if (id === -1) {
       this.tasksToDisplay = this.tasks_list;
     } else {
-      this.tasksToDisplay = this.tasksToDisplay.filter(task => task.assignee_id === id);
+      this.tasksToDisplay = this.tasks_list.filter(task => task.assignee_id === id);
     }
   }
 }
