@@ -34,6 +34,7 @@ export class TasksComponent {
 
   filterTasksByUser(event: any) {
     const id = Number(event.target.value);
+    this.selectedUserId = id;
 
     if (id === -1) {
       this.tasksToDisplay = this.tasks_list;

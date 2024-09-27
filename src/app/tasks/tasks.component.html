@@ -4,10 +4,16 @@
             <label for="userSelect">Filter tasks by assigned user</label>
             <select name="" id="userSelect" class="form-select" [(ngModel)]="selectedUserId"
                 (change)="filterTasksByUser($event)">
-                <option [value]="-1">All users</option>
+                <option value="-1">All users</option>
                 <option *ngFor="let user of users_list" [value]="user.id">{{ user.name }}</option>
             </select>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h1>{{ getUserById(selectedUserId) }}</h1>
     </div>
 </div>
 <div class="row">
