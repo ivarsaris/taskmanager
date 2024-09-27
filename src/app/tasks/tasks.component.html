@@ -1,11 +1,19 @@
 <div class="row">
-    <div class="col-12 d-flex justify-content-end">
+    <div class="col-12 d-flex justify-content-end gap-4">
         <div class="d-flex flex-column gap-2">
             <label for="userSelect">Filter tasks by assigned user</label>
             <select name="" id="userSelect" class="form-select" [(ngModel)]="selectedUserId"
                 (change)="filterTasksByUser($event)">
                 <option value="-1">All users</option>
                 <option *ngFor="let user of users_list" [value]="user.id">{{ user.name }}</option>
+            </select>
+        </div>
+        <div class="d-flex flex-column gap-2">
+            <label for="taskComponent">Sort tasks by</label>
+            <select name="" id="taskComponent" class="form-select" [(ngModel)]="selectedUserId"
+                (change)="sortTasksByComponent($event)">
+                <option value="default">Added to list</option>
+                <option *ngFor="let component of task_filter_components" [value]="component">{{ component }}</option>
             </select>
         </div>
     </div>

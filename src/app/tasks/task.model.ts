@@ -1,6 +1,6 @@
 export interface Task {
     id: number;
-    assignee: number;
+    assignee_id: number;
     title: string;
     description: string;
     date_created: string;

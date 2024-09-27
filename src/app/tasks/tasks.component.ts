@@ -4,6 +4,7 @@ import { type Task } from './task.model';
 import { tasks_list } from './tasks.list';
 import { task_statuses } from './task.parts.list';
 import { task_priorities } from './task.parts.list';
+import { task_filter_components } from './task.parts.list';
 import { users_list } from '../users/users.list';
 import { FormsModule } from '@angular/forms';
 
