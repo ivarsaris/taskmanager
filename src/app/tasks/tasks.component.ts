@@ -20,6 +20,7 @@ export class TasksComponent {
   tasks_list = tasks_list;
   task_statuses = task_statuses;
   task_priorities = task_priorities;
+  task_filter_components = task_filter_components;
   users_list = users_list;
   selectedUserId: number = -1;
   tasksToDisplay = this.tasks_list;
@@ -40,7 +41,25 @@ export class TasksComponent {
     if (id === -1) {
       this.tasksToDisplay = this.tasks_list;
     } else {
-      this.tasksToDisplay = this.tasks_list.filter(task => task.assignee_id === id);
+      this.tasksToDisplay = this.tasksToDisplay.filter(task => task.assignee_id === id);
+    }
+  }
+
+  // to do: store sorting parameter as value,
+  // make return list method
+  sortTasksByComponent(event: any) {
+    const sortByValue = event.target.value;
+
+    switch (sortByValue) {
+      case 'default':
+        this.tasksToDisplay = this.tasksToDisplay;
+        break;
+
+      case 'priority':
+        this.tasksToDisplay = this.tasksToDisplay.sort((task1: Task, task2: Task) => {
+          return task1.priority - task2.priority;
+        });
+        break;
     }
   }
 }
