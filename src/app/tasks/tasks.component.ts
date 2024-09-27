@@ -60,6 +60,20 @@ export class TasksComponent {
           return task1.priority - task2.priority;
         });
         break;
+
+      case 'date_created':
+        this.sortByDate(sortByValue);
+        break;
+
+      case 'date_deadline':
+        this.sortByDate(sortByValue);
+        break;
     }
+  }
+
+  sortByDate(dateType: keyof Task) {
+    this.tasksToDisplay = this.tasksToDisplay.sort((task1: Task, task2: Task) => {
+      return new Date(task1[dateType]).getTime() - new Date(task2[dateType]).getTime();
+    });
   }
 }
