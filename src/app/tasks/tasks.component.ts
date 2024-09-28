@@ -17,46 +17,74 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class TasksComponent {
+
   tasks_list = tasks_list;
+  filtered_tasks_list = tasks_list;
   task_statuses = task_statuses;
   task_priorities = task_priorities;
   task_filter_components = task_filter_components;
   users_list = users_list;
   selectedUserId: number = -1;
-  tasksToDisplay = this.tasks_list;
+  sortValue: string = '';
+  selectedUserName: string = '';
 
+  /**
+   * 
+   * @param {string} status - the statuses the tasks can be in
+   * @returns {Task[]} - array of tasks with the specified status
+   */
   getTasksByStatus(status: string) {
-    return this.tasksToDisplay.filter(task => task.status === status);
+    return this.filtered_tasks_list.filter(task => task.status === status);
   }
 
+  /**
+   * 
+   * @param {number} id - id of a user 
+   * @returns  {string} - name of the user matching the id
+   */
   getUserById(id: number) {
     const user = this.users_list.find(user => user.id === id);
     return user?.name;
   }
 
-  filterTasksByUser(event: any) {
-    const id = Number(event.target.value);
-    this.selectedUserId = id;
+  /**
+   * 
+   * runs when a filter or sorting method is selected. to return
+   * the list of tasks sorted and filtered
+   * 
+   */
+  filterAndSortTasks() {
+    this.filterTasksByUser();
+    this.sortTasksByComponent();
+  }
+
+  /**
+   * filters the tasks_list by selected user
+   */
+  filterTasksByUser() {
+    const id = Number(this.selectedUserId);
+    this.selectedUserName = this.getUserById(id) || 'no user selected';
 
     if (id === -1) {
-      this.tasksToDisplay = this.tasks_list;
+      this.filtered_tasks_list = this.tasks_list;
     } else {
-      this.tasksToDisplay = this.tasksToDisplay.filter(task => task.assignee_id === id);
+      this.filtered_tasks_list = this.tasks_list.filter(task => task.assignee_id === id);
     }
   }
 
-  // to do: store sorting parameter as value,
-  // make return list method
-  sortTasksByComponent(event: any) {
-    const sortByValue = event.target.value;
+  /**
+   * sorts the tasks_list by chosen value
+   */
+  sortTasksByComponent() {
+    const sortByValue = this.sortValue;
 
     switch (sortByValue) {
       case 'default':
-        this.tasksToDisplay = this.tasksToDisplay;
+        this.filtered_tasks_list = this.filtered_tasks_list;
         break;
 
       case 'priority':
-        this.tasksToDisplay = this.tasksToDisplay.sort((task1: Task, task2: Task) => {
+        this.filtered_tasks_list = this.filtered_tasks_list.sort((task1: Task, task2: Task) => {
           return task1.priority - task2.priority;
         });
         break;
@@ -72,7 +100,7 @@ export class TasksComponent {
   }
 
   sortByDate(dateType: keyof Task) {
-    this.tasksToDisplay = this.tasksToDisplay.sort((task1: Task, task2: Task) => {
+    this.filtered_tasks_list = this.filtered_tasks_list.sort((task1: Task, task2: Task) => {
       return new Date(task1[dateType]).getTime() - new Date(task2[dateType]).getTime();
     });
   }
