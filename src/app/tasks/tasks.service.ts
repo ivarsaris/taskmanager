@@ -17,6 +17,8 @@ export class TasksService {
     task_filter_components = task_filter_components;
     users_list = users_list;
     selectedUserName: string = '';
+    selectedUserId = -1;
+    selectedSortValue = '';
 
     /**
      * 
@@ -44,6 +46,8 @@ export class TasksService {
      * 
      */
     filterAndSortTasks(id: number, sortValue: string) {
+        this.selectedUserId = id;
+        this.selectedSortValue = sortValue;
         this.filterTasksByUser(id);
         this.sortTasksByComponent(sortValue);
     }
@@ -93,5 +97,10 @@ export class TasksService {
         this.filtered_tasks_list = this.filtered_tasks_list.sort((task1: Task, task2: Task) => {
             return new Date(task1[dateType]).getTime() - new Date(task2[dateType]).getTime();
         });
+    }
+
+    createNewTask(newTask: Task) {
+        this.tasks_list.push(newTask);
+        this.filterAndSortTasks(this.selectedUserId, this.selectedSortValue);
     }
 }

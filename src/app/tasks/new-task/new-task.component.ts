@@ -1,11 +1,12 @@
 import { NgFor } from '@angular/common';
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, inject } from '@angular/core';
 import { task_statuses } from '../task.parts.list';
 import { task_priorities } from '../task.parts.list';
 import { users_list } from '../../users/users.list';
 import { tasks_list } from '../tasks.list';
 import { type Task } from '../task.model';
 import { FormsModule } from '@angular/forms';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-new-task',
@@ -20,6 +21,8 @@ export class NewTaskComponent {
   task_priorities = task_priorities;
   users_list = users_list;
   tasks_list = tasks_list;
+
+  private tasksService = inject(TasksService);
 
   // set viewchild on input elements to get their values
   @ViewChild('taskNameInput') taskNameInput!: ElementRef;
@@ -57,9 +60,7 @@ export class NewTaskComponent {
       status: taskStatus
     }
 
-    this.tasks_list.push(newTask);
-    this.clearNewTaskForm();
-    console.log(this.tasks_list);
+    this.tasksService.createNewTask(newTask);
   }
 
   /**
