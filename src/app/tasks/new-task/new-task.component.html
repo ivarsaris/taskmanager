@@ -1,0 +1,63 @@
+<div class="modal fade" id="newTaskModal" tabindex="-1" aria-labelledby="newTaskModalLabel" aria-hidden="true"
+    #newTaskModal>
+    <div class="modal-dialog">
+        <form #newTaskForm>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newTaskModalLabel">Create new task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <label for="task-title"><strong>Name</strong></label>
+                            <input class="modal-input w-100" type="text" name="task-title" id="task-title"
+                                #taskNameInput required>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="task-description"><strong>Description</strong></label>
+                            <textarea #taskDescriptionInput name="task-description" class="w-100" id="task-description"
+                                rows="4" cols="40"></textarea>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center justify-content-between align-center">
+                            <label for="task-status"><strong>Status</strong></label>
+                            <select #taskStatusInput class="modal-input w-50 py-2 px-3" name="task-status"
+                                id="task-status" required>
+                                <option *ngFor="let status_value of task_statuses" [value]="status_value">{{
+                                    status_value }}
+                                </option>
+                            </select>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center justify-content-between align-center">
+                            <label for="task-deadline"><strong>Deadline</strong></label>
+                            <input #taskDateDeadlineInput class="modal-input w-50 py-2 px-3" type="date"
+                                name="task-deadline" id="task-deadline" required>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center justify-content-between align-center">
+                            <label for="task-priority"><strong>Priority</strong></label>
+                            <select #taskPriorityInput class="modal-input w-50 py-2 px-3" name="task-priority"
+                                id="task-priority" required>
+                                <option *ngFor="let priority_value of task_priorities" [value]="priority_value">{{
+                                    priority_value }}</option>
+                            </select>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center justify-content-between align-center">
+                            <label for="task-assignee"><strong>Assigned to</strong></label>
+                            <select #taskAssigneeInput class="modal-input w-50 py-2 px-3" name="task-assignee"
+                                id="task-assignee">
+                                <option *ngFor="let user of users_list" [value]="user.id">{{ user.name }}</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" (click)="createNewTask()"
+                        data-bs-dismiss="modal">Create
+                        task</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

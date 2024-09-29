@@ -24,12 +24,12 @@
             </li>
           </ul>
 
-          <button class="btn btn-light ms-auto">Create Task</button>
+          <button class="btn btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#newTaskModal">Create Task</button>
         </div>
       </nav>
     </div>
   </header>
-
+  <app-new-task></app-new-task>
   <main class="container flex-grow-1">
     <router-outlet />
   </main>
