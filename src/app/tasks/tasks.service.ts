@@ -135,8 +135,13 @@ export class TasksService {
         return this.currentTaskToEdit$;
     }
 
+    /**
+     * 
+     * @param {Task} editedTask - edit an existing task in the tasks_list
+     */
     editOpenTask(editedTask: Task) {
         const editTaskIndex = this.tasks_list.findIndex(task => task.id === editedTask.id);
         this.tasks_list[editTaskIndex] = editedTask;
+        this.filterAndSortTasks(this.selectedUserId, this.selectedSortValue);
     }
 }
