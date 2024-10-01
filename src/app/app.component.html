@@ -23,14 +23,14 @@
               <a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a>
             </li>
           </ul>
-
-          <button class="btn btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#newTaskModal">Create Task</button>
+          
+          <button *ngIf="getCurrentRoute() === 'tasks'" class="btn btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#newTaskModal">Create Task</button>
+          <button *ngIf="getCurrentRoute() === 'users'" class="btn btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#newUserModal">Create User</button>
         </div>
       </nav>
     </div>
   </header>
-  <app-new-task></app-new-task>
-  <app-edit-task></app-edit-task>
+  
   <main class="container flex-grow-1">
     <router-outlet />
   </main>

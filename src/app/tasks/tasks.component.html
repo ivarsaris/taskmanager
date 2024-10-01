@@ -1,3 +1,5 @@
+<app-new-task></app-new-task>
+<app-edit-task></app-edit-task>
 <div class="row">
     <div class="col-12 d-flex justify-content-end gap-4">
         <div class="d-flex flex-column gap-2">
@@ -36,8 +38,10 @@
                         <div class="card-body position-relative">
                             <h5 class="card-title">{{ task.title }}</h5>
                             <p class="card-text">{{ task.description }}</p>
-                                <a href="#" (click)="setTaskToEdit(task.id)" class="position-absolute top-1 right-1 w-4 h-4 d-flex align-items-center justify-content-center" data-bs-toggle="modal"
-                                data-bs-target="#editTaskModal"><i class="bi bi-pencil-square text-success display-icon"></i></a>
+                            <a href="#" (click)="setTaskToEdit(task.id)"
+                                class="position-absolute top-1 right-1 w-4 h-4 d-flex align-items-center justify-content-center"
+                                data-bs-toggle="modal" data-bs-target="#editTaskModal"><i
+                                    class="bi bi-pencil-square text-success display-icon"></i></a>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-center">

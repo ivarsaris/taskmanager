@@ -8,11 +8,13 @@ import { task_filter_components } from './task.parts.list';
 import { users_list } from '../users/users.list';
 import { FormsModule } from '@angular/forms';
 import { TasksService } from './tasks.service';
+import { NewTaskComponent } from './new-task/new-task.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [NgFor, FormsModule, NewTaskComponent, EditTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.scss'
 })
