@@ -5,6 +5,7 @@ import { task_filter_components } from "./task.parts.list";
 import { users_list } from "../users/users.list";
 import { Injectable } from "@angular/core";
 import { Task } from "./task.model";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 
@@ -19,6 +20,9 @@ export class TasksService {
     selectedUserName: string = '';
     selectedUserId = -1;
     selectedSortValue = '';
+    private currentTaskToEditSubject = new BehaviorSubject<Task | undefined>(undefined);
+
+    currentTaskToEdit$ = this.currentTaskToEditSubject.asObservable();
 
     /**
      * 
@@ -37,6 +41,16 @@ export class TasksService {
     getUserById(id: number) {
         const user = this.users_list.find(user => user.id === id);
         return user?.name;
+    }
+
+    /**
+     * 
+     * @param {number} id - id of the task to retreive 
+     * @returns {Task} - the task which matches the ID
+     */
+    getTaskById(id: number) {
+        const task = this.tasks_list.find(task => task.id === id);
+        return task;
     }
 
     /**
@@ -102,5 +116,27 @@ export class TasksService {
     createNewTask(newTask: Task) {
         this.tasks_list.push(newTask);
         this.filterAndSortTasks(this.selectedUserId, this.selectedSortValue);
+    }
+
+    /**
+     * 
+     * @param {number} id - id of the task to be edited
+     */
+    setTaskToEdit(id: number) {
+        const task = this.getTaskById(id);
+        this.currentTaskToEditSubject.next(task);
+    }
+
+    /**
+     * 
+     * @returns {Task} - current task to edit
+     */
+    getTaskToEdit() {
+        return this.currentTaskToEdit$;
+    }
+
+    editOpenTask(editedTask: Task) {
+        const editTaskIndex = this.tasks_list.findIndex(task => task.id === editedTask.id);
+        this.tasks_list[editTaskIndex] = editedTask;
     }
 }

@@ -38,7 +38,6 @@ export class NewTaskComponent {
    * creates a new Task and adds it to the tasks.list array
    */
   createNewTask() {
-    console.log(this.tasks_list);
     const taskName = this.taskNameInput.nativeElement.value;
     const taskDescription = this.taskDescriptionInput.nativeElement.value;
     const taskStatus = this.taskStatusInput.nativeElement.value;

@@ -44,6 +44,10 @@ export class TasksComponent {
     this.selectedUserName = this.tasksService.selectedUserName;
   }
 
+  setTaskToEdit(id: number) {
+    this.tasksService.setTaskToEdit(id);
+  }
+
   // sortByDate(dateType: keyof Task) {
   //   return this.tasksService.sortByDate(dateType);
   // }
