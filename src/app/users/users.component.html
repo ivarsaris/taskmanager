@@ -1,10 +1,15 @@
 <app-new-user></app-new-user>
+<app-edit-user></app-edit-user>
 <div class="row">
     <div class="col-12">
         <ul class="list-group mb-5">
             <li *ngFor="let user of users_list" class="list-group-item user d-flex align-items-center gap-3">
                 <img class="avatar-small" height="50" [src]="user.avatar" [alt]="user.name" />
                 <span class="name">{{user.name}}</span>
+                <a href="#" (click)="setUserToEdit(user.id)"
+                                class="position-absolute top-1 right-1 w-4 h-4 d-flex align-items-center justify-content-center"
+                                data-bs-toggle="modal" data-bs-target="#editUserModal"><i
+                                    class="bi bi-pencil-square text-success display-icon"></i></a>
             </li>
         </ul>
     </div>

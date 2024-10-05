@@ -1,0 +1,41 @@
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="newUserModalLabel" aria-hidden="true"
+    #editUserModal>
+    <div class="modal-dialog">
+        <form #editUserForm>
+            <div *ngIf="currentUserToEdit !== undefined" class="modal-content">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Edit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <label for="task-title"><strong>Name</strong></label>
+                                <input class="modal-input w-100" type="text" name="user-title" id="user-title"
+                                    #userNameInput [value]="currentUserToEdit.name" required>
+                            </li>
+                            <li class="list-group-item">
+                                <label for="task-assignee"><strong>Avatar</strong></label>
+                                <div class="d-flex flex-wrap gap-4 mt-4">
+                                    <img src="{{currentUserToEdit.avatar}}" class="avatar w-5 h-5 pointer"
+                                        >
+                                    <ng-container *ngFor="let image_url of avatar_images; let i = index">
+                                        <img src="{{image_url}}" class="avatar w-5 h-5 pointer"
+                                            [ngClass]="{'selected': selectedImageIndex === i}" alt=""
+                                            (click)="setUserAvatar(i)">
+                                    </ng-container>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-primary" (click)="editUser()" data-bs-dismiss="modal">Edit
+                            user</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
