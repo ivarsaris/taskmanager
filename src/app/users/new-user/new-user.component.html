@@ -1,0 +1,39 @@
+<div class="modal fade" id="newUserModal" tabindex="-1" aria-labelledby="newUserModalLabel" aria-hidden="true"
+    #newUserModal>
+    <div class="modal-dialog">
+        <form #newUserForm>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newUserModalLabel">Create new user</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <label for="task-title"><strong>Name</strong></label>
+                            <input class="modal-input w-100" type="text" name="user-title" id="user-title"
+                                #userNameInput required>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="task-assignee"><strong>Avatar</strong></label>
+                            <div class="d-flex flex-wrap gap-4 mt-4">
+                                <ng-container *ngFor="let image_url of avatar_images; let i = index">
+                                    <img src="{{image_url}}" class="avatar w-5 h-5 pointer"
+                                        [ngClass]="{'selected': selectedImageIndex === i}" alt=""
+                                        (click)="setNewUserAvatar(i)">
+                                </ng-container>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" (click)="createNewUser()"
+                        data-bs-dismiss="modal">Create
+                        user</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

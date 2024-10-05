@@ -1,6 +1,11 @@
-<ul class="list-group mb-5">
-    <li *ngFor="let user of users_list" class="list-group-item user d-flex align-items-center gap-3">
-        <img class="avatar-small" height="50" [src]="user.avatar" [alt]="user.name" />
-        <span class="name">{{user.name}}</span>
-    </li>
-</ul>
+<app-new-user></app-new-user>
+<div class="row">
+    <div class="col-12">
+        <ul class="list-group mb-5">
+            <li *ngFor="let user of users_list" class="list-group-item user d-flex align-items-center gap-3">
+                <img class="avatar-small" height="50" [src]="user.avatar" [alt]="user.name" />
+                <span class="name">{{user.name}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
