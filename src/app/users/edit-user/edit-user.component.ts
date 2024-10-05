@@ -30,6 +30,10 @@ export class EditUserComponent {
     this.selectedImageIndex = index;
   }
 
+  /**
+   * TO DO:
+   * make avatar selectable, including current avatar
+   */
   editUser() {
     const user: User = {
       id: this.currentUserToEdit!.id,
