@@ -1,7 +1,9 @@
 import { NgClass, NgFor } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { User } from '../user.model';
 import { users_list } from '../users.list';
+import { TasksService } from '../../tasks/tasks.service';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-new-user',
@@ -11,6 +13,9 @@ import { users_list } from '../users.list';
   styleUrl: './new-user.component.scss'
 })
 export class NewUserComponent {
+
+  private usersService = inject(UsersService);
+
   avatar_images: Array<string> = ['https://avatar.iran.liara.run/public/39', 'https://avatar.iran.liara.run/public/40', 'https://avatar.iran.liara.run/public/41', 'https://avatar.iran.liara.run/public/42', 'https://avatar.iran.liara.run/public/43', 'https://avatar.iran.liara.run/public/44', 'https://avatar.iran.liara.run/public/45', 'https://avatar.iran.liara.run/public/46', 'https://avatar.iran.liara.run/public/47', 'https://avatar.iran.liara.run/public/48'];
   image_url: string = 'https://as2.ftcdn.net/v2/jpg/04/62/12/13/1000_F_462121328_LoZ2Pp4CNl0zM4iXttuiaD0CpbLYbyEk.jpg';
   selectedImageIndex: number | null = null;
@@ -33,6 +38,6 @@ export class NewUserComponent {
       avatar: userAvatar
     }
 
-    this.users_list.push(newUser);
+    this.usersService.createNewUser(newUser);
   }
 }

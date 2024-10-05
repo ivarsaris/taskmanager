@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { users_list } from './users.list';
 import { type User } from './user.model';
 import { NgFor } from '@angular/common';
 import { NewUserComponent } from './new-user/new-user.component';
+import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-users',
@@ -12,5 +13,8 @@ import { NewUserComponent } from './new-user/new-user.component';
   styleUrl: './users.component.scss'
 })
 export class UsersComponent {
-  users_list = users_list;
+
+  private usersService = inject(UsersService);
+
+  users_list = this.usersService.users_list;
 }
