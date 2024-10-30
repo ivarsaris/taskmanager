@@ -17,8 +17,8 @@ export class EditUserComponent {
   private userSubscription!: Subscription;
   currentUserToEdit: User | undefined = undefined;
   avatar_images: Array<string> = ['https://avatar.iran.liara.run/public/39', 'https://avatar.iran.liara.run/public/40', 'https://avatar.iran.liara.run/public/41', 'https://avatar.iran.liara.run/public/42', 'https://avatar.iran.liara.run/public/43', 'https://avatar.iran.liara.run/public/44', 'https://avatar.iran.liara.run/public/45', 'https://avatar.iran.liara.run/public/46', 'https://avatar.iran.liara.run/public/47', 'https://avatar.iran.liara.run/public/48'];
-  selectedImageIndex: number | null = null;
   @ViewChild('userNameInput') userNameInput!: ElementRef;
+  userAvatar: string | undefined = this.currentUserToEdit?.avatar;
 
   ngOnInit() {
     this.userSubscription = this.usersService.currentUserToEdit$.subscribe(user => {
@@ -26,8 +26,8 @@ export class EditUserComponent {
     })
   }
 
-  setUserAvatar(index: number) {
-    this.selectedImageIndex = index;
+  setUserAvatar(avatur_url: string) {
+    this.userAvatar = avatur_url;
   }
 
   /**
@@ -38,7 +38,7 @@ export class EditUserComponent {
     const user: User = {
       id: this.currentUserToEdit!.id,
       name: this.userNameInput.nativeElement.value,
-      avatar: this.currentUserToEdit!.avatar
+      avatar: this.userAvatar!
     }
 
     this.usersService.editOpenUser(user);
