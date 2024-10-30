@@ -30,7 +30,7 @@ export class TasksComponent {
   task_filter_components = this.tasksService.task_filter_components;
   users_list = this.tasksService.users_list;
   selectedUserId = -1;
-  sortValue = '';
+  sortValue = 'default';
   selectedUserName = '';
   
   getTasksByStatus(status: string) {

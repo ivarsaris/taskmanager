@@ -88,7 +88,9 @@ export class TasksService {
 
         switch (sortValue) {
             case 'default':
-                this.filtered_tasks_list = this.filtered_tasks_list;
+                this.filtered_tasks_list = this.filtered_tasks_list.sort((task1: Task, task2: Task) => {
+                    return task1.id - task2.id;
+                });
                 break;
 
             case 'priority':
