@@ -18,27 +18,33 @@ export class EditUserComponent {
   currentUserToEdit: User | undefined = undefined;
   avatar_images: Array<string> = ['https://avatar.iran.liara.run/public/39', 'https://avatar.iran.liara.run/public/40', 'https://avatar.iran.liara.run/public/41', 'https://avatar.iran.liara.run/public/42', 'https://avatar.iran.liara.run/public/43', 'https://avatar.iran.liara.run/public/44', 'https://avatar.iran.liara.run/public/45', 'https://avatar.iran.liara.run/public/46', 'https://avatar.iran.liara.run/public/47', 'https://avatar.iran.liara.run/public/48'];
   @ViewChild('userNameInput') userNameInput!: ElementRef;
+  @ViewChild('userDepartmentInput') userDepartmentInput!: ElementRef;
+  @ViewChild('userPositionInput') userPositionInput!: ElementRef;
   userAvatar: string | undefined = this.currentUserToEdit?.avatar;
 
   ngOnInit() {
     this.userSubscription = this.usersService.currentUserToEdit$.subscribe(user => {
       this.currentUserToEdit = user;
     })
+    console.log(this.userAvatar);
   }
 
   setUserAvatar(avatur_url: string) {
     this.userAvatar = avatur_url;
   }
 
-  /**
-   * TO DO:
-   * make avatar selectable, including current avatar
-   */
   editUser() {
+    const department = this.userDepartmentInput.nativeElement.value || '';
+    const position = this.userPositionInput.nativeElement.value || '';
+    const avatar = this.userAvatar !== undefined ? this.userAvatar : this.currentUserToEdit!.avatar;
+
     const user: User = {
       id: this.currentUserToEdit!.id,
       name: this.userNameInput.nativeElement.value,
-      avatar: this.userAvatar!
+      avatar: avatar,
+      department: department,
+      position: position,
+      status: 'active'
     }
 
     this.usersService.editOpenUser(user);

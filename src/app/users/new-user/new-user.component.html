@@ -24,11 +24,31 @@
                                 </ng-container>
                             </div>
                         </li>
+                        <li class="list-group-item">
+                            <label for="user-email"><strong>Email</strong></label>
+                            <input class="modal-input w-100" type="text" name="user-email" id="user-email"
+                                #userEmailInput>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="user-state"><strong>Status</strong></label>
+                            <input class="modal-input w-100" type="text" name="user-state" id="user-state"
+                                #userStateInput>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="user-department"><strong>Department</strong></label>
+                            <input class="modal-input w-100" type="text" name="user-department" id="user-department"
+                                #userDepartmentInput required>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="user-position"><strong>Position</strong></label>
+                            <input class="modal-input w-100" type="text" name="user-position" id="user-position"
+                                #userPositionInput required>
+                        </li>
                     </ul>
                 </div>
                 <div class="modal-footer">
 
-                    <button type="button" class="btn btn-primary" (click)="createNewUser()"
+                    <button type="button" class="btn btn-success" (click)="createNewUser()"
                         data-bs-dismiss="modal">Create
                         user</button>
                 </div>

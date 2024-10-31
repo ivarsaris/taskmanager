@@ -21,6 +21,10 @@ export class NewUserComponent {
   selectedImageIndex: number | null = null;
   users_list = users_list;
   @ViewChild('userNameInput') userNameInput!: ElementRef;
+  @ViewChild('userStateInput') userStateInput!: ElementRef;
+  @ViewChild('userDepartmentInput') userDepartmentInput!: ElementRef;
+  @ViewChild('userPositionInput') userPositionInput!: ElementRef;
+  @ViewChild('userEmailInput') userEmailInput!: ElementRef;
 
   setNewUserAvatar(index: number) {
     this.selectedImageIndex = index;
@@ -30,12 +34,20 @@ export class NewUserComponent {
     // get user with highest ID and add 1
     const userId = Math.max(...this.users_list.map(task => task.id)) + 1;
     const userName = this.userNameInput.nativeElement.value;
+    const userState = this.userStateInput.nativeElement.value;
+    const userDepartment = this.userDepartmentInput.nativeElement.value;
+    const userPosition = this.userPositionInput.nativeElement.value;
+    const userEmail = this.userEmailInput.nativeElement.value;
     const userAvatar = this.selectedImageIndex !== null ? this.avatar_images[this.selectedImageIndex!] : this.image_url;
 
     const newUser: User = {
       id: userId,
       name: userName,
-      avatar: userAvatar
+      avatar: userAvatar,
+      status: userState || 'active',
+      department: userDepartment || '',
+      position: userPosition || '',
+      email: userEmail || ''
     }
 
     this.usersService.createNewUser(newUser);

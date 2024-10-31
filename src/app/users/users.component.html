@@ -6,6 +6,9 @@
             <li *ngFor="let user of users_list" class="list-group-item user d-flex align-items-center gap-3">
                 <img class="avatar-small" height="50" [src]="user.avatar" [alt]="user.name" />
                 <span class="name">{{user.name}}</span>
+                <span class="department">{{user.department}}</span>
+                <span class="position">{{user.position}}</span>
+                <span class="status">{{user.status}}</span>
                 <a href="#" (click)="setUserToEdit(user.id)"
                                 class="position-absolute top-1 right-1 w-4 h-4 d-flex align-items-center justify-content-center"
                                 data-bs-toggle="modal" data-bs-target="#editUserModal"><i
