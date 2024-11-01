@@ -12,6 +12,9 @@ export const users_list: User[] = [
         name: 'Piet',
         avatar: 'https://avatar.iran.liara.run/public/29',
         status: 'active',
+        department: 'Marketing',
+        position: 'Marketing manager',
+        email: 'piet@company.com'
     },
     {
         id: 2,

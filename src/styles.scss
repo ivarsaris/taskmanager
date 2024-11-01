@@ -468,6 +468,9 @@ body {
 .w-5 {
     width: 40px !important;
 }
+.w-12 {
+    width: 96px !important;
+}
 
 .h-1 {
     height: 8px !important;
@@ -483,6 +486,9 @@ body {
 }
 .h-5 {
     height: 40px !important;
+}
+.h-12 {
+    height: 96px !important;
 }
 
 .top-1 {
@@ -515,6 +521,14 @@ body {
 
 .left-2 {
     left: 16px;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.mr-auto {
+    margin-right: auto;
 }
 
 .display-icon {

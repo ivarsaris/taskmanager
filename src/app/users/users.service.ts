@@ -10,6 +10,9 @@ export class UsersService {
     private currentUserToEditSubject = new BehaviorSubject<User|undefined>(undefined);
     currentUserToEdit$ = this.currentUserToEditSubject.asObservable();
 
+    private currentUserToViewSubject = new BehaviorSubject<User|undefined>(undefined);
+    currentUserToView$ = this.currentUserToViewSubject.asObservable();
+
     /**
      * @param user - user to be added to the users list
      */
@@ -36,6 +39,17 @@ export class UsersService {
     setUserToEdit(id: number) {
         const user = this.getUserById(id);
         this.currentUserToEditSubject.next(user);
+    }
+
+    /**
+     * 
+     * @param id - id of the user
+     * 
+     * sets the user to view in the card
+     */
+    setUserToView(id: number) {
+        const user = this.getUserById(id);
+        this.currentUserToViewSubject.next(user);
     }
 
     /**

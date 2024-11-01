@@ -1,0 +1,26 @@
+<div *ngIf="currentUserToView !== undefined" class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+            <h3 class="card-title">{{currentUserToView.name}}</h3>
+            <img src="{{currentUserToView.avatar}}" class="avatar w-12 h-12">
+        </div>
+        <div class="card-body row">
+            <div class="cart-item col-12 col-md-6">
+                <p class="text-muted">Position</p>
+                <h6>{{currentUserToView.position}}</h6>
+            </div>
+            <div class="cart-item col-12 col-md-6">
+                <p class="text-muted">Department</p>
+                <h6>{{currentUserToView.department}}</h6>
+            </div>
+            <div class="cart-item col-12 col-md-6 mt-5">
+                <p class="text-muted">Status</p>
+                <h6>{{currentUserToView.status}}</h6>
+            </div>
+            <div class="cart-item col-12 col-md-6 mt-5">
+                <p class="text-muted">Email</p>
+                <h6>{{currentUserToView.email}}</h6>
+            </div>
+        </div>
+    </div>
+</div>
