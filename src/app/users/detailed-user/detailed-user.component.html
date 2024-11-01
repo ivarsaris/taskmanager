@@ -1,8 +1,11 @@
 <div *ngIf="currentUserToView !== undefined" class="card">
     <div class="card-body">
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
             <h3 class="card-title">{{currentUserToView.name}}</h3>
-            <img src="{{currentUserToView.avatar}}" class="avatar w-12 h-12">
+            <a role="button" (click)="setUserToEdit(currentUserToView.id)"
+                    class="w-4 h-4 ml-3 d-flex align-items-center justify-content-center" data-bs-toggle="modal"
+                    data-bs-target="#editUserModal"><i class="bi bi-pencil-square text-success display-icon"></i></a>
+            <img src="{{currentUserToView.avatar}}" class="avatar w-12 h-12 ml-auto">
         </div>
         <div class="card-body row">
             <div class="cart-item col-12 col-md-6">

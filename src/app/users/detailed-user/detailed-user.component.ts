@@ -22,4 +22,8 @@ export class DetailedUserComponent {
       this.currentUserToView = user;
     });
   }
+
+  setUserToEdit(id: number) {
+    this.usersService.setUserToEdit(id);
+  }
 }

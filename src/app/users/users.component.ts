@@ -23,8 +23,4 @@ export class UsersComponent {
   setUserToView(id: number) {
     this.usersService.setUserToView(id);
   }
-
-  setUserToEdit(id: number) {
-    this.usersService.setUserToEdit(id);
-  }
 }
