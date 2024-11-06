@@ -5,6 +5,7 @@ import { users_list } from '../users.list';
 import { TasksService } from '../../tasks/tasks.service';
 import { UsersService } from '../users.service';
 import { user_statuses } from '../user.info.list';
+import { user_roles } from '../user.info.list';
 
 @Component({
   selector: 'app-new-user',
@@ -22,6 +23,7 @@ export class NewUserComponent {
   selectedImageIndex: number | null = null;
   users_list = users_list;
   user_statuses = user_statuses;
+  user_roles = user_roles;
   @ViewChild('userNameInput') userNameInput!: ElementRef;
   @ViewChild('userStatusInput') userStatusInput!: ElementRef;
   @ViewChild('userDepartmentInput') userDepartmentInput!: ElementRef;

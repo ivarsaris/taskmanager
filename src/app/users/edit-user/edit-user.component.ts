@@ -4,6 +4,7 @@ import { UsersService } from '../users.service';
 import { User } from '../user.model';
 import { Subscription } from 'rxjs';
 import { user_statuses } from '../user.info.list';;
+import { user_roles } from '../user.info.list';
 
 @Component({
   selector: 'app-edit-user',
@@ -26,6 +27,7 @@ export class EditUserComponent {
   @ViewChild('userRoleInput') userRoleInput!: ElementRef;
   userAvatar: string | undefined = this.currentUserToEdit?.avatar;
   user_statuses = user_statuses;
+  user_roles = user_roles;
 
   ngOnInit() {
     this.userSubscription = this.usersService.currentUserToEdit$.subscribe(user => {

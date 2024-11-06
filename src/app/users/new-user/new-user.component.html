@@ -50,8 +50,12 @@
                         </li>
                         <li class="list-group-item">
                             <label for="user-role"><strong>Role</strong></label>
-                            <input class="modal-input w-100" type="text" name="user-role" id="user-role"
-                                #userRoleInput required>
+                            <select #userRoleInput class="modal-input w-50 py-2 px-3 d-block" name="user-role"
+                                id="user-role" required>
+                                <option *ngFor="let role of user_roles" [value]="role">{{
+                                    role }}
+                                </option>
+                            </select>
                         </li>
                     </ul>
                 </div>
