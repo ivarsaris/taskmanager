@@ -30,9 +30,13 @@
                                 #userEmailInput>
                         </li>
                         <li class="list-group-item">
-                            <label for="user-state"><strong>Status</strong></label>
-                            <input class="modal-input w-100" type="text" name="user-state" id="user-state"
-                                #userStateInput>
+                            <label for="user-status"><strong>Status</strong></label>
+                            <select #userStatusInput class="modal-input w-50 py-2 px-3 d-block" name="user-status"
+                                id="user-status" required>
+                                <option *ngFor="let status_value of user_statuses" [value]="status_value">{{
+                                    status_value }}
+                                </option>
+                            </select>
                         </li>
                         <li class="list-group-item">
                             <label for="user-department"><strong>Department</strong></label>
@@ -43,6 +47,11 @@
                             <label for="user-position"><strong>Position</strong></label>
                             <input class="modal-input w-100" type="text" name="user-position" id="user-position"
                                 #userPositionInput required>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="user-role"><strong>Role</strong></label>
+                            <input class="modal-input w-100" type="text" name="user-role" id="user-role"
+                                #userRoleInput required>
                         </li>
                     </ul>
                 </div>

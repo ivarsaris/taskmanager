@@ -3,6 +3,7 @@ import { NgFor, NgClass, NgIf } from '@angular/common';
 import { UsersService } from '../users.service';
 import { User } from '../user.model';
 import { Subscription } from 'rxjs';
+import { user_statuses } from '../user.info.list';;
 
 @Component({
   selector: 'app-edit-user',
@@ -20,7 +21,11 @@ export class EditUserComponent {
   @ViewChild('userNameInput') userNameInput!: ElementRef;
   @ViewChild('userDepartmentInput') userDepartmentInput!: ElementRef;
   @ViewChild('userPositionInput') userPositionInput!: ElementRef;
+  @ViewChild('userStatusInput') userStatusInput!: ElementRef;
+  @ViewChild('userEmailInput') userEmailInput!: ElementRef;
+  @ViewChild('userRoleInput') userRoleInput!: ElementRef;
   userAvatar: string | undefined = this.currentUserToEdit?.avatar;
+  user_statuses = user_statuses;
 
   ngOnInit() {
     this.userSubscription = this.usersService.currentUserToEdit$.subscribe(user => {
@@ -34,17 +39,23 @@ export class EditUserComponent {
   }
 
   editUser() {
+    const name = this.userNameInput.nativeElement.value || '';
     const department = this.userDepartmentInput.nativeElement.value || '';
     const position = this.userPositionInput.nativeElement.value || '';
     const avatar = this.userAvatar !== undefined ? this.userAvatar : this.currentUserToEdit!.avatar;
+    const status = this.userStatusInput.nativeElement.value || '';
+    const email = this.userEmailInput.nativeElement.value || '';
+    const role = this.userRoleInput.nativeElement.value || '';
 
     const user: User = {
       id: this.currentUserToEdit!.id,
-      name: this.userNameInput.nativeElement.value,
+      name: name,
       avatar: avatar,
       department: department,
       position: position,
-      status: 'active'
+      status: status,
+      email: email,
+      role: role
     }
 
     this.usersService.editOpenUser(user);

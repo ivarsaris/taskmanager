@@ -5,5 +5,6 @@ export interface User {
     department?: string;
     position?: string;
     email?: string;
+    role?:string;
     status: string;
 }
