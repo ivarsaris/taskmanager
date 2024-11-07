@@ -61,5 +61,6 @@ export class UsersService {
     editOpenUser(editedUser: User) {
         const editUserIndex = this.users_list.findIndex(user => user.id === editedUser.id);
         this.users_list[editUserIndex] = editedUser;
+        this.currentUserToViewSubject.next(editedUser);
     }
 }
