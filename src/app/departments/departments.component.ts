@@ -1,7 +1,8 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Department } from './department.model';
 import { department_list } from './departments.list';
+import { DepartmentsService } from './departments.service';
 import { NewDepartmentComponent } from './new-department/new-department.component';
 
 @Component({
@@ -12,7 +13,9 @@ import { NewDepartmentComponent } from './new-department/new-department.componen
   styleUrl: './departments.component.scss'
 })
 export class DepartmentsComponent {
-  department_list = department_list;
+  private departmentsService = inject(DepartmentsService);
+
+  department_list = this.departmentsService.department_list;
 
   setDepartmentToView(id: number) {
 
