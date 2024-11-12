@@ -13,11 +13,20 @@ export class UsersService {
     private currentUserToViewSubject = new BehaviorSubject<User|undefined>(undefined);
     currentUserToView$ = this.currentUserToViewSubject.asObservable();
 
+    constructor() {
+        const users = localStorage.getItem('taskmanager_users');
+
+        if (users) {
+            this.users_list = JSON.parse(users);
+        }
+    }
+
     /**
      * @param user - user to be added to the users list
      */
     createNewUser(user: User) {
         this.users_list.push(user);
+        this.saveUsers();
     }
 
     /**
@@ -62,5 +71,13 @@ export class UsersService {
         const editUserIndex = this.users_list.findIndex(user => user.id === editedUser.id);
         this.users_list[editUserIndex] = editedUser;
         this.currentUserToViewSubject.next(editedUser);
+        this.saveUsers();
+    }
+
+    /**
+     * save users to localStorage
+     */
+    private saveUsers() {
+        localStorage.setItem('taskmanager_users', JSON.stringify(this.users_list));
     }
 }
