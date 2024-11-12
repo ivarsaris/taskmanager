@@ -21,8 +21,17 @@ export class TasksService {
     selectedUserId = -1;
     selectedSortValue = '';
     private currentTaskToEditSubject = new BehaviorSubject<Task | undefined>(undefined);
-
+    
     currentTaskToEdit$ = this.currentTaskToEditSubject.asObservable();
+
+    constructor() {
+        const tasks = localStorage.getItem('taskmanager_tasks');
+
+        if (tasks) {
+            this.tasks_list = JSON.parse(tasks);
+            this.filtered_tasks_list = this.tasks_list;
+        }
+    }
 
     /**
      * 
@@ -118,6 +127,7 @@ export class TasksService {
     createNewTask(newTask: Task) {
         this.tasks_list.push(newTask);
         this.filterAndSortTasks(this.selectedUserId, this.selectedSortValue);
+        this.saveTasks();
     }
 
     /**
@@ -145,5 +155,13 @@ export class TasksService {
         const editTaskIndex = this.tasks_list.findIndex(task => task.id === editedTask.id);
         this.tasks_list[editTaskIndex] = editedTask;
         this.filterAndSortTasks(this.selectedUserId, this.selectedSortValue);
+        this.saveTasks();
+    }
+
+    /**
+     * helper function to store the tasks in localStorage
+     */
+    private saveTasks() {
+        localStorage.setItem('taskmanager_tasks', JSON.stringify(this.tasks_list));
     }
 }
