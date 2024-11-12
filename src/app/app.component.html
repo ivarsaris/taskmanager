@@ -22,10 +22,14 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/departments" routerLinkActive="active">Departments</a>
+            </li>
           </ul>
           
           <button *ngIf="getCurrentRoute() === 'tasks'" class="btn btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#newTaskModal">Create Task</button>
           <button *ngIf="getCurrentRoute() === 'users'" class="btn btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#newUserModal">Create User</button>
+          <button *ngIf="getCurrentRoute() === 'departments'" class="btn btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#newDepartmentModal">Create Department</button>
         </div>
       </nav>
     </div>
