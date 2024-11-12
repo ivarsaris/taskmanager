@@ -1,0 +1,29 @@
+<div class="modal fade" id="newDepartmentModal" tabindex="-1" aria-labelledby="newDepartmentModalLabel" aria-hidden="true"
+    #newDepartmentModal>
+    <div class="modal-dialog">
+        <form #newDepartmentForm>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newDepartmentModalLabel">Create new department</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <label for="task-title"><strong>Name</strong></label>
+                            <input class="modal-input w-100" type="text" name="department-title" id="department-title"
+                                #departmentNameInput required>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-success" (click)="createNewDepartment()"
+                        data-bs-dismiss="modal">Create
+                        department</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
