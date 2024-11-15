@@ -6,6 +6,7 @@ import { TasksService } from '../../tasks/tasks.service';
 import { UsersService } from '../users.service';
 import { user_statuses } from '../user.info.list';
 import { user_roles } from '../user.info.list';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-new-user',
@@ -21,7 +22,7 @@ export class NewUserComponent {
   avatar_images: Array<string> = ['https://avatar.iran.liara.run/public/39', 'https://avatar.iran.liara.run/public/40', 'https://avatar.iran.liara.run/public/41', 'https://avatar.iran.liara.run/public/42', 'https://avatar.iran.liara.run/public/43', 'https://avatar.iran.liara.run/public/44', 'https://avatar.iran.liara.run/public/45', 'https://avatar.iran.liara.run/public/46', 'https://avatar.iran.liara.run/public/47', 'https://avatar.iran.liara.run/public/48'];
   image_url: string = 'https://as2.ftcdn.net/v2/jpg/04/62/12/13/1000_F_462121328_LoZ2Pp4CNl0zM4iXttuiaD0CpbLYbyEk.jpg';
   selectedImageIndex: number | null = null;
-  users_list = users_list;
+
   user_statuses = user_statuses;
   user_roles = user_roles;
   @ViewChild('userNameInput') userNameInput!: ElementRef;
@@ -30,6 +31,15 @@ export class NewUserComponent {
   @ViewChild('userPositionInput') userPositionInput!: ElementRef;
   @ViewChild('userEmailInput') userEmailInput!: ElementRef;
   @ViewChild('userRoleInput') userRoleInput!: ElementRef;
+  private userListSubscription!: Subscription;
+
+  users_list: User[] | undefined = undefined;
+
+  ngOnInit() {
+    this.userListSubscription = this.usersService.usersList$.subscribe(usersList => {
+      this.users_list = usersList;
+    });
+  }
 
   setNewUserAvatar(index: number) {
     this.selectedImageIndex = index;
@@ -37,7 +47,7 @@ export class NewUserComponent {
 
   createNewUser() {
     // get user with highest ID and add 1
-    const userId = Math.max(...this.users_list.map(task => task.id)) + 1;
+    const userId = Math.max(...this.users_list!.map(task => task.id)) + 1;
     const userName = this.userNameInput.nativeElement.value || '';
     const userStatus = this.userStatusInput.nativeElement.value;
     const userDepartment = this.userDepartmentInput.nativeElement.value || ''

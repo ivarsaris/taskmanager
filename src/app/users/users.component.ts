@@ -6,6 +6,7 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { UsersService } from './users.service';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { DetailedUserComponent } from './detailed-user/detailed-user.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -17,8 +18,15 @@ import { DetailedUserComponent } from './detailed-user/detailed-user.component';
 export class UsersComponent {
 
   private usersService = inject(UsersService);
+  private userListSubscription!: Subscription;
 
-  users_list = this.usersService.users_list;
+  users_list: User[] | undefined = undefined;
+
+  ngOnInit() {
+    this.userListSubscription = this.usersService.usersList$.subscribe(usersList => {
+      this.users_list = usersList;
+    });
+  }
 
   setUserToView(id: number) {
     this.usersService.setUserToView(id);

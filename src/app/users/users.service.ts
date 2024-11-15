@@ -6,18 +6,21 @@ import { users_list } from "./users.list";
 @Injectable({providedIn: 'root'})
 
 export class UsersService {
-    users_list = users_list;
+
     private currentUserToEditSubject = new BehaviorSubject<User|undefined>(undefined);
     currentUserToEdit$ = this.currentUserToEditSubject.asObservable();
 
     private currentUserToViewSubject = new BehaviorSubject<User|undefined>(undefined);
     currentUserToView$ = this.currentUserToViewSubject.asObservable();
 
+    private usersListSubject = new BehaviorSubject<User[]>(users_list);
+    usersList$ = this.usersListSubject.asObservable();
+
     constructor() {
         const users = localStorage.getItem('taskmanager_users');
 
         if (users) {
-            this.users_list = JSON.parse(users);
+            this.usersListSubject.next(JSON.parse(users));
         }
     }
 
@@ -25,8 +28,10 @@ export class UsersService {
      * @param user - user to be added to the users list
      */
     createNewUser(user: User) {
-        this.users_list.push(user);
-        this.saveUsers();
+        const currentUsersList = this.usersListSubject.value;
+        const updatedUsersList = [...currentUsersList, user];
+        this.usersListSubject.next(updatedUsersList);
+        this.saveUsers(updatedUsersList);
     }
 
     /**
@@ -35,7 +40,7 @@ export class UsersService {
      * @returns user who matches the id from the users list
      */
     getUserById(id: number) {
-        const user = this.users_list.find(user => user.id === id);
+        const user = this.usersListSubject.value.find(user => user.id === id);
         return user;
     }
 
@@ -68,16 +73,16 @@ export class UsersService {
      * updates the user in the users list with the values from the modal
      */
     editOpenUser(editedUser: User) {
-        const editUserIndex = this.users_list.findIndex(user => user.id === editedUser.id);
-        this.users_list[editUserIndex] = editedUser;
+        const editUserIndex = this.usersListSubject.value.findIndex(user => user.id === editedUser.id);
+        this.usersListSubject.value[editUserIndex] = editedUser;
         this.currentUserToViewSubject.next(editedUser);
-        this.saveUsers();
+        this.saveUsers(this.usersListSubject.value);
     }
 
     /**
      * save users to localStorage
      */
-    private saveUsers() {
-        localStorage.setItem('taskmanager_users', JSON.stringify(this.users_list));
+    private saveUsers(usersList: User[]) {
+        localStorage.setItem('taskmanager_users', JSON.stringify(usersList));
     }
 }
