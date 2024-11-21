@@ -3,8 +3,9 @@ import { NgFor, NgClass, NgIf } from '@angular/common';
 import { UsersService } from '../users.service';
 import { User } from '../user.model';
 import { Subscription } from 'rxjs';
-import { user_statuses } from '../user.info.list';;
+import { user_statuses } from '../user.info.list';
 import { user_roles } from '../user.info.list';
+import { department_list } from '../../departments/departments.list';
 
 @Component({
   selector: 'app-edit-user',
@@ -28,12 +29,12 @@ export class EditUserComponent {
   userAvatar: string | undefined = this.currentUserToEdit?.avatar;
   user_statuses = user_statuses;
   user_roles = user_roles;
+  department_list = department_list;
 
   ngOnInit() {
     this.userSubscription = this.usersService.currentUserToEdit$.subscribe(user => {
       this.currentUserToEdit = user;
-    })
-    console.log(this.userAvatar);
+    });
   }
 
   setUserAvatar(avatur_url: string) {

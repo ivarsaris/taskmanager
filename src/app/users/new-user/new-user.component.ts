@@ -7,6 +7,7 @@ import { UsersService } from '../users.service';
 import { user_statuses } from '../user.info.list';
 import { user_roles } from '../user.info.list';
 import { Subscription } from 'rxjs';
+import { department_list } from '../../departments/departments.list';
 
 @Component({
   selector: 'app-new-user',
@@ -22,7 +23,7 @@ export class NewUserComponent {
   avatar_images: Array<string> = ['https://avatar.iran.liara.run/public/39', 'https://avatar.iran.liara.run/public/40', 'https://avatar.iran.liara.run/public/41', 'https://avatar.iran.liara.run/public/42', 'https://avatar.iran.liara.run/public/43', 'https://avatar.iran.liara.run/public/44', 'https://avatar.iran.liara.run/public/45', 'https://avatar.iran.liara.run/public/46', 'https://avatar.iran.liara.run/public/47', 'https://avatar.iran.liara.run/public/48'];
   image_url: string = 'https://as2.ftcdn.net/v2/jpg/04/62/12/13/1000_F_462121328_LoZ2Pp4CNl0zM4iXttuiaD0CpbLYbyEk.jpg';
   selectedImageIndex: number | null = null;
-
+  department_list = department_list;
   user_statuses = user_statuses;
   user_roles = user_roles;
   @ViewChild('userNameInput') userNameInput!: ElementRef;

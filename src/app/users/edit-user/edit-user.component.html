@@ -34,8 +34,13 @@
                             </li>
                             <li class="list-group-item">
                                 <label for="user-department"><strong>Department</strong></label>
-                                <input class="modal-input w-100" type="text" name="user-department" id="user-department"
-                                    #userDepartmentInput [value]="currentUserToEdit.department || ''" required>
+                                <select #userDepartmentInput class="modal-input w-50 py-2 px-3 d-block" name="user-department"
+                                    id="user-department" required>
+                                    <option *ngIf="!currentUserToEdit.department" value="" disabled selected>Select a department</option>
+                                    <option *ngFor="let department of department_list" [value]="department.name" [selected]="department.name == currentUserToEdit.department">{{
+                                        department.name }}
+                                    </option>
+                                </select>
                             </li>
                             <li class="list-group-item">
                                 <label for="user-position"><strong>Position</strong></label>
@@ -46,6 +51,7 @@
                                 <label for="user-status"><strong>Status</strong></label>
                                 <select #userStatusInput class="modal-input w-50 py-2 px-3 d-block" name="user-status"
                                     id="user-status" required>
+                                    <option *ngIf="!currentUserToEdit.status" value="" disabled selected>Select a status</option>
                                     <option *ngFor="let status_value of user_statuses" [value]="status_value">{{
                                         status_value }}
                                     </option>
@@ -60,6 +66,7 @@
                                 <label for="user-role"><strong>Role</strong></label>
                                 <select #userRoleInput class="modal-input w-50 py-2 px-3 d-block" name="user-role"
                                     id="user-role" required>
+                                    <option *ngIf="!currentUserToEdit.role" value="" disabled selected>Select a role</option>
                                     <option *ngFor="let role of user_roles" [value]="role">{{
                                         role }}
                                     </option>
@@ -68,9 +75,7 @@
                         </ul>
                     </div>
                     <div class="modal-footer">
-
-                        <button type="button" class="btn btn-success" (click)="editUser()" data-bs-dismiss="modal">Edit
-                            user</button>
+                        <button type="button" class="btn btn-success" (click)="editUser()" data-bs-dismiss="modal">Edit user</button>
                     </div>
                 </div>
             </div>
