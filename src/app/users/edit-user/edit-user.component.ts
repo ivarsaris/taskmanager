@@ -1,16 +1,17 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { NgFor, NgClass, NgIf } from '@angular/common';
+import { NgFor, NgClass, NgIf, CommonModule } from '@angular/common';
 import { UsersService } from '../users.service';
 import { User } from '../user.model';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { user_statuses } from '../user.info.list';
 import { user_roles } from '../user.info.list';
 import { department_list } from '../../departments/departments.list';
+import { Department } from '../../departments/department.model';
 
 @Component({
   selector: 'app-edit-user',
   standalone: true,
-  imports: [NgFor, NgClass, NgIf],
+  imports: [NgFor, NgClass, NgIf, CommonModule],
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.scss'
 })
@@ -29,12 +30,15 @@ export class EditUserComponent {
   userAvatar: string | undefined = this.currentUserToEdit?.avatar;
   user_statuses = user_statuses;
   user_roles = user_roles;
-  department_list = department_list;
+  
+  departmentList$!: Observable<Department[]>;
 
   ngOnInit() {
     this.userSubscription = this.usersService.currentUserToEdit$.subscribe(user => {
       this.currentUserToEdit = user;
     });
+
+    this.departmentList$ = this.usersService.deparmentList$;
   }
 
   setUserAvatar(avatur_url: string) {
