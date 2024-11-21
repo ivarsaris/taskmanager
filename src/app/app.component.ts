@@ -36,4 +36,17 @@ export class AppComponent {
   }
 
   title = 'taskmanager';
+
+  /**
+   * empty local storage values, users, department, and tasks
+   */
+  emptyLocalStorage() {
+    localStorage.removeItem('taskmanager_departments');
+    localStorage.removeItem('taskmanager_users');
+    localStorage.removeItem('taskmanager_tasks');
+
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+  }
 }
