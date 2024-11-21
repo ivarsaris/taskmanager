@@ -1,22 +1,23 @@
-import { NgClass, NgFor } from '@angular/common';
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { NgClass, NgFor, NgIf, CommonModule } from '@angular/common';
+import { Component, ElementRef, ViewChild, inject, OnInit } from '@angular/core';
 import { User } from '../user.model';
 import { users_list } from '../users.list';
 import { TasksService } from '../../tasks/tasks.service';
 import { UsersService } from '../users.service';
 import { user_statuses } from '../user.info.list';
 import { user_roles } from '../user.info.list';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { department_list } from '../../departments/departments.list';
+import { Department } from '../../departments/department.model';
 
 @Component({
   selector: 'app-new-user',
   standalone: true,
-  imports: [NgFor, NgClass],
+  imports: [NgFor, NgClass, NgIf, CommonModule],
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.scss'
 })
-export class NewUserComponent {
+export class NewUserComponent implements OnInit {
 
   private usersService = inject(UsersService);
 
@@ -36,10 +37,14 @@ export class NewUserComponent {
 
   users_list: User[] | undefined = undefined;
 
+  departmentList$!: Observable<Department[]>;
+
   ngOnInit() {
     this.userListSubscription = this.usersService.usersList$.subscribe(usersList => {
       this.users_list = usersList;
     });
+
+    this.departmentList$ = this.usersService.deparmentList$;
   }
 
   setNewUserAvatar(index: number) {
