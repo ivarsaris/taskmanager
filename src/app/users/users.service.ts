@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { DepartmentsService } from "../departments/departments.service";
+import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "./user.model";
 import { users_list } from "./users.list";
+import { Department } from "../departments/department.model";
 
 @Injectable({providedIn: 'root'})
 
@@ -16,12 +18,16 @@ export class UsersService {
     private usersListSubject = new BehaviorSubject<User[]>(users_list);
     usersList$ = this.usersListSubject.asObservable();
 
-    constructor() {
+    deparmentList$: Observable<Department[]>;
+
+    constructor(private departmentsService: DepartmentsService) {
         const users = localStorage.getItem('taskmanager_users');
 
         if (users) {
             this.usersListSubject.next(JSON.parse(users));
         }
+
+        this.deparmentList$ = this.departmentsService.departmentList$;
     }
 
     /**
