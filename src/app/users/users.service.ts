@@ -1,24 +1,29 @@
 import { Injectable } from "@angular/core";
+import { map, Subscription } from "rxjs";
 import { DepartmentsService } from "../departments/departments.service";
 import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "./user.model";
 import { users_list } from "./users.list";
 import { Department } from "../departments/department.model";
+import { department_list } from "../departments/departments.list";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 
 export class UsersService {
 
-    private currentUserToEditSubject = new BehaviorSubject<User|undefined>(undefined);
+    private currentUserToEditSubject = new BehaviorSubject<User | undefined>(undefined);
     currentUserToEdit$ = this.currentUserToEditSubject.asObservable();
 
-    private currentUserToViewSubject = new BehaviorSubject<User|undefined>(undefined);
+    private currentUserToViewSubject = new BehaviorSubject<User | undefined>(undefined);
     currentUserToView$ = this.currentUserToViewSubject.asObservable();
 
     private usersListSubject = new BehaviorSubject<User[]>(users_list);
     usersList$ = this.usersListSubject.asObservable();
 
-    deparmentList$: Observable<Department[]>;
+    private currentUserToViewDepartmentSubject = new BehaviorSubject<Department | undefined>(undefined);
+    currentUserToViewDepartment$ = this.currentUserToViewDepartmentSubject.asObservable();
+
+    departmentList$: Observable<Department[]>;
 
     constructor(private departmentsService: DepartmentsService) {
         const users = localStorage.getItem('taskmanager_users');
@@ -27,7 +32,7 @@ export class UsersService {
             this.usersListSubject.next(JSON.parse(users));
         }
 
-        this.deparmentList$ = this.departmentsService.departmentList$;
+        this.departmentList$ = this.departmentsService.departmentList$;
     }
 
     /**
@@ -68,8 +73,14 @@ export class UsersService {
      * sets the user to view in the card
      */
     setUserToView(id: number) {
+
         const user = this.getUserById(id);
         this.currentUserToViewSubject.next(user);
+
+        if (user !== undefined) {
+            const department = this.departmentsService.getDepartmentById(user.department!);
+            this.currentUserToViewDepartmentSubject.next(department);
+        }
     }
 
     /**
@@ -82,6 +93,10 @@ export class UsersService {
         const editUserIndex = this.usersListSubject.value.findIndex(user => user.id === editedUser.id);
         this.usersListSubject.value[editUserIndex] = editedUser;
         this.currentUserToViewSubject.next(editedUser);
+        if (editedUser?.department !== undefined) {
+            this.currentUserToViewDepartmentSubject.next(this.departmentsService.getDepartmentById(editedUser.department!));
+        }
+
         this.saveUsers(this.usersListSubject.value);
     }
 

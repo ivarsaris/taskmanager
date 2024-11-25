@@ -5,8 +5,8 @@ import { User } from '../user.model';
 import { Observable, Subscription } from 'rxjs';
 import { user_statuses } from '../user.info.list';
 import { user_roles } from '../user.info.list';
-import { department_list } from '../../departments/departments.list';
 import { Department } from '../../departments/department.model';
+import { DepartmentsService } from '../../departments/departments.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -20,6 +20,7 @@ export class EditUserComponent {
   private usersService = inject(UsersService);
   private userSubscription!: Subscription;
   currentUserToEdit: User | undefined = undefined;
+  
   avatar_images: Array<string> = ['https://avatar.iran.liara.run/public/39', 'https://avatar.iran.liara.run/public/40', 'https://avatar.iran.liara.run/public/41', 'https://avatar.iran.liara.run/public/42', 'https://avatar.iran.liara.run/public/43', 'https://avatar.iran.liara.run/public/44', 'https://avatar.iran.liara.run/public/45', 'https://avatar.iran.liara.run/public/46', 'https://avatar.iran.liara.run/public/47', 'https://avatar.iran.liara.run/public/48'];
   @ViewChild('userNameInput') userNameInput!: ElementRef;
   @ViewChild('userDepartmentInput') userDepartmentInput!: ElementRef;
@@ -31,14 +32,17 @@ export class EditUserComponent {
   user_statuses = user_statuses;
   user_roles = user_roles;
   
-  departmentList$!: Observable<Department[]>;
+  private departmentService = inject(DepartmentsService);
+  private departmentSubscription!: Subscription;
+  departmentList: Department[] | undefined = undefined;
 
   ngOnInit() {
     this.userSubscription = this.usersService.currentUserToEdit$.subscribe(user => {
       this.currentUserToEdit = user;
     });
-
-    this.departmentList$ = this.usersService.deparmentList$;
+    this.departmentSubscription = this.departmentService.departmentList$.subscribe(departmentList => {
+      this.departmentList = departmentList;
+    });
   }
 
   setUserAvatar(avatur_url: string) {
@@ -47,7 +51,7 @@ export class EditUserComponent {
 
   editUser() {
     const name = this.userNameInput.nativeElement.value || '';
-    const department = this.userDepartmentInput.nativeElement.value || '';
+    const department = Number(this.userDepartmentInput.nativeElement.value) || 0;
     const position = this.userPositionInput.nativeElement.value || '';
     const avatar = this.userAvatar !== undefined ? this.userAvatar : this.currentUserToEdit!.avatar;
     const status = this.userStatusInput.nativeElement.value || '';

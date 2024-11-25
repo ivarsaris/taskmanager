@@ -44,7 +44,7 @@ export class NewUserComponent {
       this.users_list = usersList;
     });
 
-    this.departmentList$ = this.usersService.deparmentList$;
+    this.departmentList$ = this.usersService.departmentList$;
   }
 
   setNewUserAvatar(index: number) {
@@ -56,7 +56,7 @@ export class NewUserComponent {
     const userId = Math.max(...this.users_list!.map(task => task.id)) + 1;
     const userName = this.userNameInput.nativeElement.value || '';
     const userStatus = this.userStatusInput.nativeElement.value;
-    const userDepartment = this.userDepartmentInput.nativeElement.value || ''
+    const userDepartment = Number(this.userDepartmentInput.nativeElement.value) || 0;
     const userPosition = this.userPositionInput.nativeElement.value || '';
     const userEmail = this.userEmailInput.nativeElement.value || '';
     const userRole = this.userRoleInput.nativeElement.value || '';

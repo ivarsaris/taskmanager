@@ -19,6 +19,16 @@ export class DepartmentsService {
         }
     }
 
+    /**
+     * 
+     * @param id - id of the department
+     * @returns department that matches the id
+     */
+     getDepartmentById(id: number) {
+        const department = this.departmentListSubject.value.find(department => department.id === id);
+        return department;
+    }
+
     createNewDepartment(name: string) {
         const departmentId = Math.max(...this.departmentListSubject.value.map(department => department.id)) + 1;
         

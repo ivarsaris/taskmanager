@@ -14,7 +14,7 @@
             </div>
             <div class="cart-item col-12 col-md-6">
                 <p class="text-muted">Department</p>
-                <h6>{{currentUserToView.department}}</h6>
+                <h6 *ngIf="currentUserDepartment !== undefined">{{currentUserDepartment.name}}</h6>
             </div>
             <div class="cart-item col-12 col-md-6 mt-5">
                 <p class="text-muted">Status</p>

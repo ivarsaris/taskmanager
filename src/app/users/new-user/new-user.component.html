@@ -45,7 +45,7 @@
                                 id="user-department" required>
                                 <option value="" disabled selected>Select a Department</option>
                                 <ng-container *ngIf="departmentList$ | async as departmentList">
-                                    <option *ngFor="let department of departmentList" [value]="department.name">{{
+                                    <option *ngFor="let department of departmentList" [value]="department.id">{{
                                         department.name }}
                                     </option>
                                 </ng-container>

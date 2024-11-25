@@ -2,6 +2,10 @@ import { Department } from "./department.model";
 
 export const department_list: Department[] = [
     {
+        id: 0,
+        name: 'no department',
+    },
+    {
         id: 1,
         name: 'maintenance',
     },
