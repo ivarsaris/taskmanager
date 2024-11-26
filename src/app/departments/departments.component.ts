@@ -1,6 +1,7 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { DepartmentDetailComponent } from './department-detail/department-detail.component';
 import { Department } from './department.model';
 import { department_list } from './departments.list';
 import { DepartmentsService } from './departments.service';
@@ -9,7 +10,7 @@ import { NewDepartmentComponent } from './new-department/new-department.componen
 @Component({
   selector: 'app-departments',
   standalone: true,
-  imports: [NgFor, NewDepartmentComponent],
+  imports: [NgFor, NewDepartmentComponent, DepartmentDetailComponent, NgIf],
   templateUrl: './departments.component.html',
   styleUrl: './departments.component.scss'
 })
@@ -27,6 +28,6 @@ export class DepartmentsComponent {
   }
 
   setDepartmentToView(id: number) {
-
+    this.departmentsService.setDepartmentToView(id);
   }
 }
