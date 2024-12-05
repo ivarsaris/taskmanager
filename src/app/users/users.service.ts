@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { map, Subscription } from "rxjs";
-import { DepartmentsService } from "../departments/departments.service";
+import { sharedDataService } from "../sharedData.service";
 import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "./user.model";
 import { users_list } from "./users.list";
@@ -25,14 +25,14 @@ export class UsersService {
 
     departmentList$: Observable<Department[]>;
 
-    constructor(private departmentsService: DepartmentsService) {
+    constructor(private sharedDataService: sharedDataService) {
         const users = localStorage.getItem('taskmanager_users');
 
         if (users) {
             this.usersListSubject.next(JSON.parse(users));
         }
 
-        this.departmentList$ = this.departmentsService.departmentList$;
+        this.departmentList$ = this.sharedDataService.departmentList$;
     }
 
     /**
@@ -78,7 +78,7 @@ export class UsersService {
         this.currentUserToViewSubject.next(user);
 
         if (user !== undefined) {
-            const department = this.departmentsService.getDepartmentById(user.department!);
+            const department = this.sharedDataService.getDepartmentById(user.department!);
             this.currentUserToViewDepartmentSubject.next(department);
         }
     }
@@ -94,7 +94,7 @@ export class UsersService {
         this.usersListSubject.value[editUserIndex] = editedUser;
         this.currentUserToViewSubject.next(editedUser);
         if (editedUser?.department !== undefined) {
-            this.currentUserToViewDepartmentSubject.next(this.departmentsService.getDepartmentById(editedUser.department!));
+            this.currentUserToViewDepartmentSubject.next(this.sharedDataService.getDepartmentById(editedUser.department!));
         }
 
         this.saveUsers(this.usersListSubject.value);
