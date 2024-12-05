@@ -20,7 +20,7 @@ export class DepartmentsService {
     private currentDepartmentToViewUsersSubject = new BehaviorSubject<User[] | undefined>(undefined);
     currentDepartmentToViewUsers$ = this.currentDepartmentToViewUsersSubject.asObservable();
 
-    // usersList$: Observable<User[]>;
+    usersList$: Observable<User[]>;
 
     constructor(private usersService: UsersService) {
         const departments = localStorage.getItem('taskmanager_departments');
@@ -29,8 +29,7 @@ export class DepartmentsService {
             this.departmentListSubject.next(JSON.parse(departments));
         }
 
-        // this.usersList$ = this.usersService.usersList$;
-        // console.log(this.usersList$);
+        this.usersList$ = this.usersService.usersList$;
     }
 
     /**
@@ -50,15 +49,7 @@ export class DepartmentsService {
     setDepartmentToView(id: number) {
         const department = this.getDepartmentById(id);
         this.currentDepartmentToViewSubject.next(department);
-
-        if (department !== undefined) {
-            // const users = this.getDepartmentUsers(id);
-        }
     }
-
-    // getDepartmentUsers(id: number) {
-    //     return this.usersList$.find(user => user.department === id);
-    // }
 
     createNewDepartment(name: string) {
         const departmentId = Math.max(...this.departmentListSubject.value.map(department => department.id)) + 1;
