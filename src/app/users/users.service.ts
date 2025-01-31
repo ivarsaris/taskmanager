@@ -5,7 +5,6 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "./user.model";
 import { users_list } from "./users.list";
 import { Department } from "../departments/department.model";
-import { department_list } from "../departments/departments.list";
 
 @Injectable({ providedIn: 'root' })
 
