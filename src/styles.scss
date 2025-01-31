@@ -291,6 +291,21 @@ body {
         /* Darker on hover */
         --bs-btn-disabled-color: #7a7f85;
     }
+
+    .card {
+        --bs-card-bg: #FFF;
+    }
+    .list-group {
+        --bs-list-group-bg: #FFF;
+    }
+
+    .modal-content {
+        --bs-modal-bg: #FFF;
+    }
+
+    .form-select {
+        --bs-body-bg: #FFF;
+    }
 }
 
 .m-1 {
@@ -537,4 +552,12 @@ body {
 
 .pointer {
     cursor: pointer;
+}
+
+.text-blue {
+    color: var(--bs-blue);
+}
+
+.text-green {
+    color: var(--bs-green);
 }

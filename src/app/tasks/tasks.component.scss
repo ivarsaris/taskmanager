@@ -1,0 +1,9 @@
+
+.bi-caret-right-fill {
+    transform: none;
+    transition: transform .25s ease;
+}
+
+div[aria-expanded="true"] .bi-caret-right-fill {
+    transform: rotate(90deg);
+}
