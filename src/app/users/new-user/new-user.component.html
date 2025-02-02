@@ -44,7 +44,7 @@
                             <select #userDepartmentInput class="modal-input w-50 py-2 px-3 d-block" name="user-department"
                                 id="user-department" required>
                                 <option value="" disabled selected>Select a Department</option>
-                                <ng-container *ngIf="departmentList$ | async as departmentList">
+                                <ng-container *ngIf="departmentList !== undefined">
                                     <option *ngFor="let department of departmentList" [value]="department.id">{{
                                         department.name }}
                                     </option>

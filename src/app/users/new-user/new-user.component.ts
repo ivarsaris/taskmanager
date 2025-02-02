@@ -9,6 +9,7 @@ import { user_roles } from '../user.info.list';
 import { Subscription, Observable } from 'rxjs';
 import { department_list } from '../../departments/departments.list';
 import { Department } from '../../departments/department.model';
+import { DepartmentsService } from '../../departments/departments.service';
 
 @Component({
   selector: 'app-new-user',
@@ -33,18 +34,22 @@ export class NewUserComponent {
   @ViewChild('userPositionInput') userPositionInput!: ElementRef;
   @ViewChild('userEmailInput') userEmailInput!: ElementRef;
   @ViewChild('userRoleInput') userRoleInput!: ElementRef;
-  private userListSubscription!: Subscription;
 
+  private userListSubscription!: Subscription;
   users_list: User[] | undefined = undefined;
 
-  departmentList$!: Observable<Department[]>;
+  private departmentService = inject(DepartmentsService);
+  private departmentSubscription!: Subscription;
+  departmentList: Department[] | undefined = undefined;
 
   ngOnInit() {
     this.userListSubscription = this.usersService.usersList$.subscribe(usersList => {
       this.users_list = usersList;
     });
 
-    this.departmentList$ = this.usersService.departmentList$;
+    this.departmentSubscription = this.departmentService.departmentList$.subscribe(departmentList => {
+      this.departmentList = departmentList;
+    });
   }
 
   setNewUserAvatar(index: number) {
