@@ -17,12 +17,25 @@ export class sharedDataService {
     usersList$ = this.usersListSubject.asObservable();
 
     constructor() {
+        this.updateDepartments();
+        this.updateUsers();
+    }
+
+    /**
+     * update observable department list with department from local storage
+     */
+    updateDepartments() {
         const departments = localStorage.getItem('taskmanager_departments');
 
         if (departments) {
             this.departmentListSubject.next(JSON.parse(departments));
         }
+    }
 
+    /**
+     * update observable users list with department from local storage
+     */
+    updateUsers() {
         const users = localStorage.getItem('taskmanager_users');
 
         if (users) {

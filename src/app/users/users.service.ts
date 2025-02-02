@@ -97,6 +97,7 @@ export class UsersService {
         }
 
         this.saveUsers(this.usersListSubject.value);
+        this.sharedDataService.updateUsers();
     }
 
     /**
@@ -104,5 +105,6 @@ export class UsersService {
      */
     private saveUsers(usersList: User[]) {
         localStorage.setItem('taskmanager_users', JSON.stringify(usersList));
+        this.sharedDataService.updateUsers();
     }
 }
