@@ -8,6 +8,8 @@ import { task_statuses } from '../task.parts.list';
 import { task_priorities } from '../task.parts.list';
 import { users_list } from '../../users/users.list';
 import { department_list } from '../../departments/departments.list';
+import { Department } from '../../departments/department.model';
+import { DepartmentsService } from '../../departments/departments.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -24,7 +26,9 @@ export class EditTaskComponent {
   task_statuses = task_statuses;
   task_priorities = task_priorities;
   users_list = users_list;
-  department_list = department_list;
+  private departmentService = inject(DepartmentsService);
+  private departmentSubscription!: Subscription;
+  department_list: Department[] | undefined = undefined
 
   // set viewchild on input elements to get their values
   @ViewChild('taskNameInput') taskNameInput!: ElementRef;
@@ -39,6 +43,9 @@ export class EditTaskComponent {
     this.taskSubscription = this.tasksService.currentTaskToEdit$.subscribe(task => {
       this.currentTaskToEdit = task;
       console.log(task);
+    });
+    this.departmentSubscription = this.departmentService.departmentList$.subscribe(department_list => {
+      this.department_list = department_list;
     });
   }
 

@@ -8,6 +8,9 @@ import { type Task } from '../task.model';
 import { FormsModule } from '@angular/forms';
 import { TasksService } from '../tasks.service';
 import { department_list } from '../../departments/departments.list';
+import { DepartmentsService } from '../../departments/departments.service';
+import { Subscription } from 'rxjs';
+import { Department } from '../../departments/department.model';
 
 @Component({
   selector: 'app-new-task',
@@ -22,7 +25,9 @@ export class NewTaskComponent {
   task_priorities = task_priorities;
   users_list = users_list;
   tasks_list = tasks_list;
-  department_list = department_list;
+  private departmentService = inject(DepartmentsService);
+  private departmentSubscription!: Subscription;
+  department_list: Department[] | undefined = undefined
 
   private tasksService = inject(TasksService);
 
@@ -36,6 +41,12 @@ export class NewTaskComponent {
   @ViewChild('taskDepartmentInput') taskDepartmentInput!: ElementRef;
   @ViewChild('newTaskModal') newTaskModal!: ElementRef;
   @ViewChild('newTaskForm') newTaskForm!: HTMLFormElement;
+
+  ngOnInit() {
+    this.departmentSubscription = this.departmentService.departmentList$.subscribe(department_list => {
+      this.department_list = department_list;
+    });
+  }
 
   /**
    * creates a new Task and adds it to the tasks.list array
