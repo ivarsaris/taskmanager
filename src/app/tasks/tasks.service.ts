@@ -21,7 +21,7 @@ export class TasksService {
     selectedUserId = -1;
     selectedSortValue = '';
     private currentTaskToEditSubject = new BehaviorSubject<Task | undefined>(undefined);
-    
+
     currentTaskToEdit$ = this.currentTaskToEditSubject.asObservable();
 
     constructor() {
@@ -40,6 +40,15 @@ export class TasksService {
      */
     getTasksByStatus(status: string) {
         return [...this.filtered_tasks_list].filter(task => task.status === status);
+    }
+
+    /**
+     * 
+     * @param {number} department - id of department
+     * @returns {Task[]} - array of tasks assigned to department 
+     */
+    getTasksByDepartment(department: number) {
+        return [...this.filtered_tasks_list].filter(task => task.department === department);
     }
 
     /**
@@ -118,7 +127,7 @@ export class TasksService {
         }
     }
 
-    sortByDate(dateType: keyof Task) {
+    sortByDate(dateType: "date_created" | "date_deadline") {
         this.filtered_tasks_list = this.filtered_tasks_list.sort((task1: Task, task2: Task) => {
             return new Date(task1[dateType]).getTime() - new Date(task2[dateType]).getTime();
         });

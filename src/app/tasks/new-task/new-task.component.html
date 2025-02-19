@@ -48,10 +48,17 @@
                                 <option *ngFor="let user of users_list" [value]="user.id">{{ user.name }}</option>
                             </select>
                         </li>
+                        <li class="list-group-item d-flex align-items-center justify-content-between align-center">
+                            <label for="task-priority"><strong>Department</strong></label>
+                            <select #taskDepartmentInput class="modal-input w-50 py-2 px-3" name="task-department"
+                                id="task-department">
+                                <option *ngFor="let department of department_list" [value]="department">{{
+                                    department.name }}</option>
+                            </select>
+                        </li>
                     </ul>
                 </div>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-success" (click)="createNewTask()"
                         data-bs-dismiss="modal">Create
                         task</button>

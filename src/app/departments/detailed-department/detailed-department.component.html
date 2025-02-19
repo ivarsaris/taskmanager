@@ -1,11 +1,32 @@
 <div *ngIf="currentDepartmentToView !== undefined" class="card">
     <div class="card-body">
-        <div class="d-flex align-items-center">
-            <h3 class="card-title">{{currentDepartmentToView.name}}</h3>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="card-title text-blue">{{currentDepartmentToView.name}}</h3>
+            </div>
         </div>
-        <div class="card-body row">
-            <div *ngFor="let user of currentDepartmentUsers" class="cart-item col-12 col-md-6">
-                <h4>{{user.name}}</h4>
+        <hr>
+        <div *ngIf="currentDepartmentUsers !== undefined" class="row">
+            <div class="col-12">
+                <h5 class="text-green">Department members</h5>
+            </div>
+            <div *ngFor="let user of currentDepartmentUsers" class="col-12 col-md-6">
+                <h6>{{user.name}}</h6>
+            </div>
+        </div>
+        <hr>
+        <div *ngIf="currentDepartmentTasks!== undefined" class="row">
+            <div class="col-12">
+                <h5 class="text-green">Department tasks</h5>
+            </div>
+            <div *ngFor="let task of currentDepartmentTasks" class="col-12 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-blue mb-4">{{task.title}}</h5>
+                        <p>Deadline: {{task.date_deadline}}</p>
+                        <p class="mb-0">Priority: {{task.priority}}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

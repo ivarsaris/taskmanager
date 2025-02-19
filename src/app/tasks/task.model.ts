@@ -7,4 +7,5 @@ export interface Task {
     date_deadline: string;
     priority: number;
     status: string;
+    department?: number;
 }

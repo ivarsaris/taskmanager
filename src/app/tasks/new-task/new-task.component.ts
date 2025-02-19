@@ -7,6 +7,7 @@ import { tasks_list } from '../tasks.list';
 import { type Task } from '../task.model';
 import { FormsModule } from '@angular/forms';
 import { TasksService } from '../tasks.service';
+import { department_list } from '../../departments/departments.list';
 
 @Component({
   selector: 'app-new-task',
@@ -21,6 +22,7 @@ export class NewTaskComponent {
   task_priorities = task_priorities;
   users_list = users_list;
   tasks_list = tasks_list;
+  department_list = department_list;
 
   private tasksService = inject(TasksService);
 
@@ -31,6 +33,7 @@ export class NewTaskComponent {
   @ViewChild('taskDateDeadlineInput') taskDateDeadlineInput!: ElementRef;
   @ViewChild('taskPriorityInput') taskPriorityInput!: ElementRef;
   @ViewChild('taskAssigneeInput') taskAssigneeInput!: ElementRef;
+  @ViewChild('taskDepartmentInput') taskDepartmentInput!: ElementRef;
   @ViewChild('newTaskModal') newTaskModal!: ElementRef;
   @ViewChild('newTaskForm') newTaskForm!: HTMLFormElement;
 
@@ -44,6 +47,7 @@ export class NewTaskComponent {
     const taskDateDeadline = this.taskDateDeadlineInput.nativeElement.value;
     const taskPriority = this.taskPriorityInput.nativeElement.value;
     const taskAssignee = Number(this.taskAssigneeInput.nativeElement.value);
+    const taskDepartment = Number(this.taskDepartmentInput.nativeElement.value);
     const currentDate = this.getCurrentDate();
     // get task with highest ID and add 1
     const newTaskId = Math.max(...this.tasks_list.map(task => task.id)) + 1;
@@ -56,7 +60,8 @@ export class NewTaskComponent {
       date_created: currentDate,
       date_deadline: taskDateDeadline,
       priority: taskPriority,
-      status: taskStatus
+      status: taskStatus,
+      department: taskDepartment
     }
 
     this.tasksService.createNewTask(newTask);

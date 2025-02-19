@@ -7,7 +7,8 @@ export const tasks_list = [
         "date_created": "2024-05-18",
         "date_deadline": "2024-05-19",
         "priority": 1,
-        "assignee_id": 4
+        "assignee_id": 4,
+        "department": 1
     },
     {
         "id": 2,
@@ -17,7 +18,8 @@ export const tasks_list = [
         "date_created": "2024-01-25",
         "date_deadline": "2024-02-22",
         "priority": 5,
-        "assignee_id": 9
+        "assignee_id": 9,
+        "department": 2
     },
     {
         "id": 3,
@@ -27,7 +29,8 @@ export const tasks_list = [
         "date_created": "2024-05-01",
         "date_deadline": "2024-05-29",
         "priority": 5,
-        "assignee_id": 1
+        "assignee_id": 1,
+        "department": 1
     },
     {
         "id": 4,
@@ -37,7 +40,8 @@ export const tasks_list = [
         "date_created": "2024-03-09",
         "date_deadline": "2024-03-22",
         "priority": 3,
-        "assignee_id": 2
+        "assignee_id": 2,
+        "department": 3
     },
     {
         "id": 5,
@@ -47,7 +51,8 @@ export const tasks_list = [
         "date_created": "2024-05-13",
         "date_deadline": "2024-05-17",
         "priority": 0,
-        "assignee_id": 5
+        "assignee_id": 5,
+        "department": 5
     },
     {
         "id": 6,
@@ -57,7 +62,8 @@ export const tasks_list = [
         "date_created": "2024-01-29",
         "date_deadline": "2024-02-26",
         "priority": 5,
-        "assignee_id": 6
+        "assignee_id": 6,
+        "department": 5
     },
     {
         "id": 7,
@@ -67,7 +73,8 @@ export const tasks_list = [
         "date_created": "2024-01-25",
         "date_deadline": "2024-02-18",
         "priority": 4,
-        "assignee_id": 7
+        "assignee_id": 7,
+        "department": 3
     },
     {
         "id": 8,
@@ -77,7 +84,8 @@ export const tasks_list = [
         "date_created": "2024-02-05",
         "date_deadline": "2024-02-14",
         "priority": 2,
-        "assignee_id": 0
+        "assignee_id": 0,
+        "department": 3
     },
     {
         "id": 9,
@@ -87,7 +95,8 @@ export const tasks_list = [
         "date_created": "2024-04-04",
         "date_deadline": "2024-05-01",
         "priority": 4,
-        "assignee_id": 8
+        "assignee_id": 8,
+        "department": 1
     },
     {
         "id": 10,
@@ -97,7 +106,8 @@ export const tasks_list = [
         "date_created": "2024-05-17",
         "date_deadline": "2024-05-24",
         "priority": 1,
-        "assignee_id": 6
+        "assignee_id": 6,
+        "department": 5
     },
     {
         "id": 11,
@@ -107,7 +117,8 @@ export const tasks_list = [
         "date_created": "2024-05-16",
         "date_deadline": "2024-06-13",
         "priority": 5,
-        "assignee_id": 4
+        "assignee_id": 4,
+        "department": 1
     },
     {
         "id": 12,
@@ -117,7 +128,8 @@ export const tasks_list = [
         "date_created": "2024-02-10",
         "date_deadline": "2024-02-24",
         "priority": 4,
-        "assignee_id": 0
+        "assignee_id": 0,
+        "department": 2
     },
     {
         "id": 13,
@@ -127,7 +139,8 @@ export const tasks_list = [
         "date_created": "2024-01-13",
         "date_deadline": "2024-01-20",
         "priority": 3,
-        "assignee_id": 5
+        "assignee_id": 5,
+        "department": 2
     },
     {
         "id": 14,
@@ -137,7 +150,8 @@ export const tasks_list = [
         "date_created": "2024-04-11",
         "date_deadline": "2024-04-18",
         "priority": 2,
-        "assignee_id": 4
+        "assignee_id": 4,
+        "department": 5
     },
     {
         "id": 15,
@@ -147,7 +161,8 @@ export const tasks_list = [
         "date_created": "2024-01-11",
         "date_deadline": "2024-01-14",
         "priority": 1,
-        "assignee_id": 7
+        "assignee_id": 7,
+        "department": 4
     },
     {
         "id": 16,
@@ -157,7 +172,8 @@ export const tasks_list = [
         "date_created": "2024-01-29",
         "date_deadline": "2024-02-05",
         "priority": 2,
-        "assignee_id": 8
+        "assignee_id": 8,
+        "department": 5
     },
     {
         "id": 17,

@@ -7,6 +7,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { task_statuses } from '../task.parts.list';
 import { task_priorities } from '../task.parts.list';
 import { users_list } from '../../users/users.list';
+import { department_list } from '../../departments/departments.list';
 
 @Component({
   selector: 'app-edit-task',
@@ -23,6 +24,7 @@ export class EditTaskComponent {
   task_statuses = task_statuses;
   task_priorities = task_priorities;
   users_list = users_list;
+  department_list = department_list;
 
   // set viewchild on input elements to get their values
   @ViewChild('taskNameInput') taskNameInput!: ElementRef;
@@ -30,6 +32,7 @@ export class EditTaskComponent {
   @ViewChild('taskStatusInput') taskStatusInput!: ElementRef;
   @ViewChild('taskDateDeadlineInput') taskDateDeadlineInput!: ElementRef;
   @ViewChild('taskPriorityInput') taskPriorityInput!: ElementRef;
+  @ViewChild('taskDepartmentInput') taskDepartmentInput!: ElementRef;
   @ViewChild('taskAssigneeInput') taskAssigneeInput!: ElementRef;
   
   ngOnInit() {
@@ -45,6 +48,7 @@ export class EditTaskComponent {
     const taskStatus = this.taskStatusInput.nativeElement.value;
     const taskDateDeadline = this.taskDateDeadlineInput.nativeElement.value;
     const taskPriority = this.taskPriorityInput.nativeElement.value;
+    const taskDepartment = this.taskDepartmentInput.nativeElement.value;
     const taskAssignee = Number(this.taskAssigneeInput.nativeElement.value);
     const taskId = this.currentTaskToEdit!.id;
     const taskDateCreated = this.currentTaskToEdit!.date_created;
@@ -57,7 +61,8 @@ export class EditTaskComponent {
       date_created: taskDateCreated,
       date_deadline: taskDateDeadline,
       priority: taskPriority,
-      status: taskStatus
+      status: taskStatus,
+      department: taskDepartment
     }
 
     this.tasksService.editOpenTask(newTask);
