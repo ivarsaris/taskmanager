@@ -555,9 +555,9 @@ body {
 }
 
 .text-blue {
-    color: var(--bs-blue);
+    color: var(--bs-blue) !important;
 }
 
 .text-green {
-    color: var(--bs-green);
+    color: var(--bs-green) !important;
 }
