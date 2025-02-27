@@ -21,6 +21,9 @@ export class AppComponent {
 
   getCurrentRoute() {
     switch (this.router.url) {
+      case '/login':
+        return 'login';
+        break;
       case '/tasks':
         return 'tasks';
         break;
@@ -36,6 +39,16 @@ export class AppComponent {
   }
 
   title = 'taskmanager';
+
+  /**
+   * log user out
+   */
+  logOutUser() {
+    localStorage.removeItem('taskmanager_rights');
+    setTimeout(() => {
+      this.router.navigate(['login']);
+    }, 1000);
+  }
 
   /**
    * empty local storage values, users, department, and tasks
