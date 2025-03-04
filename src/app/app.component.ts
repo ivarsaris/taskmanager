@@ -44,7 +44,7 @@ export class AppComponent {
    * log user out
    */
   logOutUser() {
-    localStorage.removeItem('taskmanager_rights');
+    localStorage.removeItem('taskmanager_loggedIn');
     setTimeout(() => {
       this.router.navigate(['login']);
     }, 1000);
@@ -57,6 +57,7 @@ export class AppComponent {
     localStorage.removeItem('taskmanager_departments');
     localStorage.removeItem('taskmanager_users');
     localStorage.removeItem('taskmanager_tasks');
+    localStorage.removeItem('taskmanager_loggedIn');
 
     setTimeout(() => {
       location.reload();

@@ -1,7 +1,9 @@
 import { NgIf } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { sharedDataService } from '../sharedData.service';
 
 @Component({
   selector: 'app-login',
@@ -15,19 +17,19 @@ export class LoginComponent {
   @ViewChild('userEmailInput') userEmailInput !: ElementRef;
   @ViewChild('userPasswordInput') userPasswordInput !: ElementRef;
 
+  private sharedDataService = inject(sharedDataService);
+  private loggedInUserSubscription!: Subscription;
+  logged_in_user: string = '';
+
   constructor(private router: Router) { }
 
+  ngOnInit() {
+    this.loggedInUserSubscription = this.sharedDataService.loggedInUser$.subscribe(loggedInUser => {
+      this.logged_in_user = loggedInUser;
+    });
+  }
+
   loginUser() {
-    if (this.userEmailInput.nativeElement.value === 'manager@taskmanager.com' && this.userPasswordInput.nativeElement.value == 'manager') {
-      localStorage.setItem('taskmanager_rights', 'manager');
-    } else if (this.userEmailInput.nativeElement.value === 'teamleader@taskmanager.com' && this.userPasswordInput.nativeElement.value == 'teamleader') {
-      localStorage.setItem('taskmanager_rights', 'teamleader');
-    } else if (this.userEmailInput.nativeElement.value === 'employee@taskmanager.com' && this.userPasswordInput.nativeElement.value == 'employee') {
-      localStorage.setItem('taskmanager_rights', 'employee');
-    } else {
-      this.invalidLoginCredentials = true;
-      return;
-    }
-    this.router.navigate(['tasks']);
+    this.sharedDataService.loginUser();
   }
 }

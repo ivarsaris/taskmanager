@@ -1,5 +1,6 @@
 <div class="row"  >
     <div class="col-12">
+        <p class="my-4">Check the readme for login credentials</p>
         <form name="loginForm" class="loginForm mt-4" action="#" method="POST" >
             <div class="form-group my-2 w-50">
                 <input type="email" #userEmailInput class="form-control email" name="emailId" required
@@ -20,7 +21,7 @@
             </div>
         </form>
     </div>
-    <div class="col-12" *ngIf="unvalidLoginCredentials === true">
+    <div class="col-12" *ngIf="invalidLoginCredentials === true">
         These login credentials are invalid
     </div>
 </div>

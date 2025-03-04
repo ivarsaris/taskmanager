@@ -4,6 +4,7 @@ import { Department } from "./departments/department.model";
 import { department_list } from "./departments/departments.list";
 import { User } from "./users/user.model";
 import { users_list } from "./users/users.list";
+import { Router } from "@angular/router";
 
 @Injectable({ providedIn: 'root' })
 
@@ -16,7 +17,11 @@ export class sharedDataService {
     private usersListSubject = new BehaviorSubject<User[]>(users_list);
     usersList$ = this.usersListSubject.asObservable();
 
-    constructor() {
+    logged_in_user: string = '0';
+    private loggedInUserSubject = new BehaviorSubject<string>('0');
+    loggedInUser$ = this.loggedInUserSubject.asObservable();
+
+    constructor(private router: Router) {
         this.updateDepartments();
         this.updateUsers();
     }
@@ -61,5 +66,23 @@ export class sharedDataService {
     getUsersFromDepartment(id: number) {
         const users = this.usersListSubject.value.filter(user => user.department === id);
         return users;
+    }
+
+    logOutUser() {
+        this.logged_in_user = '';
+    }
+
+    loginUser() {
+        if (this.userEmailInput.nativeElement.value == 'manager@taskmanager.com' && this.userPasswordInput.nativeElement.value == 'manager') {
+            localStorage.setItem('taskmanager_loggedIn', 'manager');
+        } else if (this.userEmailInput.nativeElement.value == 'teamleader@taskmanager.com' && this.userPasswordInput.nativeElement.value == 'teamleader') {
+            localStorage.setItem('taskmanager_loggedIn', 'teamleader');
+        } else if (this.userEmailInput.nativeElement.value == 'employee@taskmanager.com' && this.userPasswordInput.nativeElement.value == 'employee') {
+            localStorage.setItem('taskmanager_loggedIn', 'employee');
+        } else {
+            this.invalidLoginCredentials = true;
+            return;
+        }
+        this.router.navigate(['tasks']);
     }
 }
